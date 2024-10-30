@@ -10,33 +10,33 @@ import { UserWelcomedEvent } from '../events/impl/user-welcomed.event';
 
 @Entity({ name: 'users' })
 export class User extends AbstractEntity {
-  @Column({ nullable: true })
-  firstName: string;
+    @Column({ nullable: true })
+    firstName?: string;
 
-  @Column({ nullable: true })
-  lastName: string;
+    @Column({ nullable: true })
+    lastName?: string;
 
-  @Column({ unique: true, nullable: true })
-  email: string;
+    @Column({ unique: true, nullable: true })
+    email?: string;
 
-  toDto() {
-    return plainToClass(UserDto, this);
-  }
+    toDto() {
+        return plainToClass(UserDto, this);
+    }
 
-  create() {
-    // TODO improve the naming of those functions ( something related to Events, maybe sth like onUserCreated() ... )
-    this.apply(new UserCreatedEvent(this.toDto()));
-  }
+    create() {
+        // TODO improve the naming of those functions ( something related to Events, maybe sth like onUserCreated() ... )
+        this.apply(new UserCreatedEvent(this.toDto()));
+    }
 
-  update() {
-    this.apply(new UserUpdatedEvent(this.toDto()));
-  }
+    update() {
+        this.apply(new UserUpdatedEvent(this.toDto()));
+    }
 
-  welcome() {
-    this.apply(new UserWelcomedEvent(this.toDto()));
-  }
+    welcome() {
+        this.apply(new UserWelcomedEvent(this.toDto()));
+    }
 
-  delete() {
-    this.apply(new UserDeletedEvent(this.toDto()));
-  }
+    delete() {
+        this.apply(new UserDeletedEvent(this.toDto()));
+    }
 }

@@ -4,12 +4,12 @@ import { Exclude, Expose } from 'class-transformer';
 
 @Exclude()
 export class AbstractDto {
-  @Expose()
-  id!: string;
+    @Expose()
+    id!: string;
 
-  @Expose()
-  createdAt: Date;
+    @Expose()
+    createdAt: Date | undefined;
 
-  @Expose()
-  updatedAt: Date;
+    @Expose()
+    updatedAt: Date | undefined;
 }

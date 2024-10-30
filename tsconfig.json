@@ -1,20 +1,27 @@
 {
     "compilerOptions": {
         "module": "commonjs",
-        "declaration": false,
-        "noImplicitAny": false,
-        "noUnusedLocals": true,
-        "allowSyntheticDefaultImports": true,
+        "declaration": true,
         "removeComments": true,
-        "noLib": false,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
+        "allowSyntheticDefaultImports": true,
         "target": "ES2021",
         "sourceMap": true,
-        "allowJs": false,
         "outDir": "./dist",
-        "baseUrl": "./"
+        "baseUrl": "./",
+        "incremental": true,
+        "strict": true,
+        "noImplicitAny": false,
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "resolveJsonModule": true,
+        "forceConsistentCasingInFileNames": true,
+        "paths": {
+            "@/*": ["src/*"]
+        }
     },
-    "include": ["src/**/*"],
-    "exclude": ["node_modules", "**/*.spec.ts"]
+    "include": ["src/**/*", "src/modules/chains/services/price.service.spec.ts"],
+    "exclude": ["node_modules", "dist"]
 }

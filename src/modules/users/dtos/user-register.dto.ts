@@ -1,22 +1,20 @@
 'use strict';
 
+import { JOI_DEFAULT_VALIDATION_OPTIONS } from '@/common/validations';
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString, IsEmail, IsNotEmpty } from 'class-validator';
-
+import Joi from 'joi';
+import { JoiSchema, JoiSchemaOptions, JoiValidationGroups } from 'nestjs-joi';
+@JoiSchemaOptions(JOI_DEFAULT_VALIDATION_OPTIONS)
 export class UserRegisterDto {
-  @IsString()
-  @IsNotEmpty()
-  @ApiProperty()
-  readonly firstName: string;
+    @ApiProperty({ example: 'John', type: 'string' })
+    @JoiSchema([JoiValidationGroups.CREATE], Joi.string().required())
+    readonly firstName!: string;
 
-  @IsString()
-  @IsNotEmpty()
-  @ApiProperty()
-  readonly lastName: string;
+    @ApiProperty({ example: 'Doe', type: 'string' })
+    @JoiSchema([JoiValidationGroups.CREATE], Joi.string().required())
+    readonly lastName!: string;
 
-  @IsString()
-  @IsEmail()
-  @IsNotEmpty()
-  @ApiProperty()
-  readonly email: string;
+    @ApiProperty({ example: 'JohnDoe@gmail.com', type: 'string' })
+    @JoiSchema([JoiValidationGroups.CREATE], Joi.string().email().required())
+    readonly email!: string;
 }

@@ -5,7 +5,7 @@ import { UserCreatedEvent } from '../impl/user-created.event';
 
 @EventsHandler(UserCreatedEvent)
 export class UserCreatedHandler implements IEventHandler<UserCreatedEvent> {
-  handle(event: UserCreatedEvent) {
-    Logger.log(event, 'UserCreatedEvent'); // write here
-  }
+    handle(event: UserCreatedEvent) {
+        Logger.log(event, 'UserCreatedEvent'); // write here
+    }
 }

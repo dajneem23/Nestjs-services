@@ -1,0 +1,70 @@
+@host = http://localhost:4000/chains/price
+# sample price
+#    {
+#         price: {
+#           tokenName: 'Matic Token',
+#           tokenSymbol: 'MATIC',
+#           tokenLogo: 'https://logo.moralis.io/0x1_0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0_dc278c392d29136df666c3cda1cc1987',
+#           tokenDecimals: '18',
+#           nativePrice: {
+#             value: '140424585366556',
+#             decimals: 18,
+#             name: 'Ether',
+#             symbol: 'ETH',
+#             address: '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2'
+#           },
+#           usdPrice: 0.35454500603967576,
+#           usdPriceFormatted: '0.354545006039675756',
+#           exchangeName: 'Uniswap v2',
+#           exchangeAddress: '0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f',
+#           tokenAddress: '0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0',
+#           priceLastChangedAtBlock: '21037223',
+#           blockTimestamp: '1729794155000',
+#           possibleSpam: false,
+#           verifiedContract: true,
+#           pairAddress: '0x819f3450da6f110ba6ea52195b3beafa246062de',
+#           pairTotalLiquidityUsd: '535093.06',
+#           '24hrPercentChange': '1.6891111963590462',
+#           securityScore: 55
+#         }
+#       }
+
+### Get
+GET {{host}}?id=1
+
+
+### Post
+POST {{host}}
+Content-Type: application/json
+
+{
+    "tokenName": "Matic Token",
+    "tokenSymbol": "MATIC",
+    "tokenLogo": "https://logo.moralis.io/0x1_0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0_dc278c392d29136df666c3cda1cc1987",
+    "tokenDecimals": "18",
+    "usdPrice": 0.35454500603967576,
+    "usdPriceFormatted": "0.354545006039675756",
+    "hrPercentChange": "1.6891111963590462",
+    "exchangeName": "Uniswap v2",
+    "exchangeAddress": "0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f",
+    "tokenAddress": "0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0",
+    "toBlock": "21037223",
+    "possibleSpam": false,
+    "verifiedContract": true,
+    "pairAddress": "0x819f3450da6f110ba6ea52195b3beafa246062de",
+    "pairTotalLiquidityUsd": "535093.06"
+}
+
+### Put
+
+PATCH {{host}}/1
+Content-Type: application/json
+
+{
+    "tokenName": "Matic Token updated",
+    "toBlock": "1"
+}
+
+### Delete
+
+DELETE {{host}}/1

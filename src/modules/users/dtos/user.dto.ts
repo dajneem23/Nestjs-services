@@ -1,30 +1,31 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Exclude, Expose } from 'class-transformer';
-import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
 
-import { AbstractDto } from '../../../common/dto/abstract.dto';
+import { AbstractDto } from '@/common/dto/abstract.dto';
+import Joi from 'joi';
+import { JoiSchema, JoiSchemaOptions } from 'nestjs-joi';
+import { JOI_DEFAULT_VALIDATION_OPTIONS } from '@/common/validations';
 
 @Exclude()
+@JoiSchemaOptions(JOI_DEFAULT_VALIDATION_OPTIONS)
 export class UserDto extends AbstractDto {
-  @Expose()
-  @IsString()
-  @ApiProperty()
-  readonly id!: string;
+    @Expose()
+    @ApiProperty()
+    @JoiSchema(Joi.string())
+    readonly id!: string;
 
-  @Expose()
-  @IsString()
-  @ApiProperty()
-  readonly firstName!: string;
+    @Expose()
+    @ApiProperty()
+    @JoiSchema(Joi.string())
+    readonly firstName!: string;
 
-  @Expose()
-  @IsString()
-  @ApiProperty()
-  readonly lastName!: string;
+    @Expose()
+    @ApiProperty({ type: 'string' })
+    @JoiSchema(Joi.string())
+    readonly lastName!: string;
 
-  @Expose()
-  @IsString()
-  @IsEmail()
-  @IsNotEmpty()
-  @ApiProperty()
-  readonly email: string;
+    @Expose()
+    @ApiProperty({ example: 'JohnDoe@gmail.com', type: 'string' })
+    @JoiSchema(Joi.string().email().required())
+    readonly email!: string;
 }
