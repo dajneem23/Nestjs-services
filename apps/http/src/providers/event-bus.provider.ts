@@ -1,4 +1,4 @@
-import { EventStoreBusConfig, EventStoreSubscriptionType } from "nestjs-eventstore";
+import { EventStoreBusConfig, EventStoreSubscriptionType } from 'nestjs-eventstore';
 
 export const eventStoreBusConfig: EventStoreBusConfig = {
     subscriptions: [
@@ -8,14 +8,14 @@ export const eventStoreBusConfig: EventStoreBusConfig = {
         {
             // persistent subscription
             type: EventStoreSubscriptionType.Persistent,
-            stream: "$ce-users",
-            persistentSubscriptionName: "g1",
+            stream: '$ce-users',
+            persistentSubscriptionName: 'g1',
         },
         {
             // example of persistent subscription to external stream events...
             type: EventStoreSubscriptionType.Persistent,
-            stream: "$ce-orders",
-            persistentSubscriptionName: "g1",
+            stream: '$ce-orders',
+            persistentSubscriptionName: 'g1',
         },
         // {
         //     // Catchup subscription

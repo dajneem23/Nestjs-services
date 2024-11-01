@@ -1,10 +1,10 @@
-import { join } from "path";
+import { join } from 'path';
 
-import { Module } from "@nestjs/common";
-import { ClientsModule, Transport } from "@nestjs/microservices";
+import { Module } from '@nestjs/common';
+import { ClientsModule, Transport } from '@nestjs/microservices';
 
-import { AuthController } from "./auth.controller";
-import { AuthService } from "./auth.service";
+import { AuthController } from './auth.controller';
+import { AuthService } from './auth.service';
 // import { JwtModule } from '@nestjs/jwt';
 // import { jwtConstants } from './constants';
 
@@ -12,11 +12,11 @@ import { AuthService } from "./auth.service";
     imports: [
         ClientsModule.register([
             {
-                name: "AUTH_PACKAGE",
+                name: 'AUTH_PACKAGE',
                 transport: Transport.GRPC,
                 options: {
-                    package: "auth",
-                    protoPath: join(__dirname, "../../protos/auth.proto"),
+                    package: 'auth',
+                    protoPath: join(__dirname, '../../protos/auth.proto'),
                 },
             },
         ]),

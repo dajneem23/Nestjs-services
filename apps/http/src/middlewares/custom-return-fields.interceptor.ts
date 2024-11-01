@@ -1,12 +1,12 @@
-import { CallHandler, ExecutionContext, Injectable, Logger, NestInterceptor } from "@nestjs/common";
-import _ from "lodash";
-import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
+import { CallHandler, ExecutionContext, Injectable, Logger, NestInterceptor } from '@nestjs/common';
+import _ from 'lodash';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 function processObj(data: any, objectFields: string[], propFields: string[], options: any) {
-    const keepPath = options && _.has(options, "keepPath") ? options.keepPath : true;
+    const keepPath = options && _.has(options, 'keepPath') ? options.keepPath : true;
 
-    const exclude = options && _.has(options, "exclude") ? options.exclude : false;
+    const exclude = options && _.has(options, 'exclude') ? options.exclude : false;
 
     let item: Record<string, unknown> = {};
 
@@ -18,11 +18,11 @@ function processObj(data: any, objectFields: string[], propFields: string[], opt
         const mapOb: any = {};
 
         _.forEach(objectFields, (f) => {
-            const token = f.replace(new RegExp(/\[\]/gm), "").split(".");
+            const token = f.replace(new RegExp(/\[\]/gm), '').split('.');
 
             const obj: any = _.head(token);
 
-            const prop = _.tail(token).join(".");
+            const prop = _.tail(token).join('.');
 
             if (mapOb[obj]) {
                 mapOb[obj].push(prop);
@@ -54,11 +54,11 @@ function deepPick(
     inputFields: string | string[],
     options: { keepPath?: boolean; exclude?: boolean } = {},
 ) {
-    const keepPath = options && _.has(options, "keepPath") ? options.keepPath : true;
+    const keepPath = options && _.has(options, 'keepPath') ? options.keepPath : true;
 
     const fields = _.isArray(inputFields) ? inputFields : [inputFields];
 
-    const objectFields = _.filter(fields, (n) => n.indexOf(".") !== -1);
+    const objectFields = _.filter(fields, (n) => n.indexOf('.') !== -1);
 
     const propFields = _.difference(fields, objectFields);
 

@@ -1,7 +1,7 @@
-import { Injectable } from "@nestjs/common";
-import { JwtService } from "@nestjs/jwt";
+import { Injectable } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
 
-import { LoginRequest, LoginResponse, ValidateTokenRequest, ValidateTokenResponse } from "./grpc/auth.grpc";
+import { LoginRequest, LoginResponse, ValidateTokenRequest, ValidateTokenResponse } from './grpc/auth.grpc';
 
 @Injectable()
 export class AuthService {
@@ -20,7 +20,7 @@ export class AuthService {
 
     async validateToken(request: ValidateTokenRequest): Promise<ValidateTokenResponse> {
         // Implement your token validation logic here
-        const valid = request.token === "generated-token"; // Example validation
+        const valid = request.token === 'generated-token'; // Example validation
         return { valid };
     }
 }

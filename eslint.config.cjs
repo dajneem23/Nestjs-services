@@ -1,11 +1,24 @@
-import eslint from '@eslint/js';
-import tseslint from 'typescript-eslint';
-import eslintPluginImport from 'eslint-plugin-import';
+const eslint = require('@eslint/js');
+const tseslint = require('typescript-eslint');
+const eslintPluginImport = require('eslint-plugin-import');
 //@ts-nocheck
-export default [
+const config = [
     eslint.configs.recommended,
     ...tseslint.configs.recommended,
     // eslintPluginImport.configs.recommended,
+    // single quotes
+    {
+        ignores: [
+            'node_modules/',
+            'dist/',
+            'build/',
+            'coverage/',
+            'public/',
+            'scripts/',
+            'webpack/',
+            'eslint.config.cjs',
+        ],
+    },
     {
         plugins: {
             import: eslintPluginImport,
@@ -21,7 +34,7 @@ export default [
         },
         rules: {
             semi: ['warn', 'always'],
-            quotes: ['warn', 'double'],
+            quotes: ['warn', 'single'],
             '@typescript-eslint/no-unused-vars': ['warn'],
             '@typescript-eslint/explicit-function-return-type': [
                 'warn',
@@ -34,13 +47,13 @@ export default [
             '@typescript-eslint/explicit-function-return-type': 'off',
             '@typescript-eslint/no-explicit-any': 'off',
             'import/order': [
-                'error',
+                'warn',
                 {
                     'newlines-between': 'always',
                     groups: ['builtin', ['internal', 'external'], ['sibling', 'parent', 'index']],
                     pathGroups: [
                         {
-                            pattern: '@src/**',
+                            pattern: '@apps/**',
                             group: 'external',
                             position: 'after',
                         },
@@ -54,3 +67,5 @@ export default [
         },
     },
 ];
+
+module.exports = config;

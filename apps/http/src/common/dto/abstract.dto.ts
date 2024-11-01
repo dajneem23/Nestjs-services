@@ -1,6 +1,6 @@
-"use strict";
+'use strict';
 
-import { Exclude, Expose } from "class-transformer";
+import { Exclude, Expose } from 'class-transformer';
 
 @Exclude()
 export class AbstractDto {

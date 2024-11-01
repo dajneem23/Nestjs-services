@@ -1,10 +1,10 @@
-import { Test, TestingModule } from "@nestjs/testing";
+import { Test, TestingModule } from '@nestjs/testing';
 
-import { AppController } from "./app.controller";
-import { AppService } from "./app.service";
-import { SharedModule } from "./shared.module";
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { SharedModule } from './shared.module';
 
-describe("AppController", () => {
+describe('AppController', () => {
     let app: TestingModule;
 
     beforeAll(async () => {
@@ -15,10 +15,10 @@ describe("AppController", () => {
         }).compile();
     });
 
-    describe("getHello", () => {
-        it("should return \"Hello World!\"", () => {
+    describe('getHello', () => {
+        it('should return "Hello World!"', () => {
             const appController = app.get<AppController>(AppController);
-            expect(appController.getHello()).toBe("Hello World!");
+            expect(appController.getHello()).toBe('Hello World!');
         });
     });
 });

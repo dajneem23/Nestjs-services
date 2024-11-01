@@ -1,14 +1,14 @@
-import { Injectable } from "@nestjs/common";
-import { CommandBus, QueryBus } from "@nestjs/cqrs";
+import { Injectable } from '@nestjs/common';
+import { CommandBus, QueryBus } from '@nestjs/cqrs';
 
-import { CreateUserCommand } from "../commands/impl/create-user.command";
-import { DeleteUserCommand } from "../commands/impl/delete-user.command";
-import { UpdateUserCommand } from "../commands/impl/update-user.command";
-import { UserIdRequestParamsDto } from "../dtos/user-id-request-params.dto";
-import { UserRegisterDto } from "../dtos/user-register.dto";
-import { UserDto } from "../dtos/user.dto";
-import { GetUserQuery } from "../queries/impl/get-user.query";
-import { GetUsersQuery } from "../queries/impl/get-users.query";
+import { CreateUserCommand } from '../commands/impl/create-user.command';
+import { DeleteUserCommand } from '../commands/impl/delete-user.command';
+import { UpdateUserCommand } from '../commands/impl/update-user.command';
+import { UserIdRequestParamsDto } from '../dtos/user-id-request-params.dto';
+import { UserRegisterDto } from '../dtos/user-register.dto';
+import { UserDto } from '../dtos/user.dto';
+import { GetUserQuery } from '../queries/impl/get-user.query';
+import { GetUsersQuery } from '../queries/impl/get-users.query';
 
 @Injectable()
 export class UsersService {

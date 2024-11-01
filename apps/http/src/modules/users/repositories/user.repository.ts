@@ -1,9 +1,9 @@
-import { NotFoundException } from "@nestjs/common";
-import { Repository, Entity, DataSource } from "typeorm";
-import { v4 as uuidv4 } from "uuid";
+import { NotFoundException } from '@nestjs/common';
+import { Repository, Entity, DataSource } from 'typeorm';
+import { v4 as uuidv4 } from 'uuid';
 
-import { UserRegisterDto } from "../dtos/user-register.dto";
-import { User } from "../entities/user.entity";
+import { UserRegisterDto } from '../dtos/user-register.dto';
+import { User } from '../entities/user.entity';
 
 @Entity()
 export class UserRepository extends Repository<User> {

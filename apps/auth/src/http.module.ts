@@ -1,7 +1,7 @@
-import { Module } from "@nestjs/common";
+import { Module } from '@nestjs/common';
 
-import { HttpController } from "./http.controller";
-import { HttpService } from "./http.service";
+import { HttpController } from './http.controller';
+import { HttpService } from './http.service';
 
 @Module({
     imports: [],

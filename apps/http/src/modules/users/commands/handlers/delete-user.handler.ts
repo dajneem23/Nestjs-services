@@ -1,9 +1,9 @@
-import { Logger } from "@nestjs/common";
-import { ICommandHandler, CommandHandler } from "@nestjs/cqrs";
-import { EventPublisher } from "nestjs-eventstore";
+import { Logger } from '@nestjs/common';
+import { ICommandHandler, CommandHandler } from '@nestjs/cqrs';
+import { EventPublisher } from 'nestjs-eventstore';
 
-import { UserRepository } from "../../repositories/user.repository";
-import { DeleteUserCommand } from "../impl/delete-user.command";
+import { UserRepository } from '../../repositories/user.repository';
+import { DeleteUserCommand } from '../impl/delete-user.command';
 
 @CommandHandler(DeleteUserCommand)
 export class DeleteUserHandler implements ICommandHandler<DeleteUserCommand> {
@@ -13,7 +13,7 @@ export class DeleteUserHandler implements ICommandHandler<DeleteUserCommand> {
     ) {}
 
     async execute(command: DeleteUserCommand) {
-        Logger.log("Async DeleteUserHandler...", "DeleteUserCommand");
+        Logger.log('Async DeleteUserHandler...', 'DeleteUserCommand');
         const { userDto } = command;
         const user = this._publisher.mergeObjectContext(await this._repository.deleteUser(userDto));
         user.commit();

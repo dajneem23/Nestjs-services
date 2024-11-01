@@ -1,10 +1,10 @@
-import { Injectable, Logger } from "@nestjs/common";
-import { ICommand, ofType, Saga } from "@nestjs/cqrs";
-import { Observable } from "rxjs";
-import { delay, map } from "rxjs/operators";
+import { Injectable, Logger } from '@nestjs/common';
+import { ICommand, ofType, Saga } from '@nestjs/cqrs';
+import { Observable } from 'rxjs';
+import { delay, map } from 'rxjs/operators';
 
-import { WelcomeUserCommand } from "../commands/impl/welcome-user.command";
-import { UserCreatedEvent } from "../events/impl/user-created.event";
+import { WelcomeUserCommand } from '../commands/impl/welcome-user.command';
+import { UserCreatedEvent } from '../events/impl/user-created.event';
 
 @Injectable()
 export class UsersSagas {
@@ -14,7 +14,7 @@ export class UsersSagas {
             ofType(UserCreatedEvent),
             delay(1000),
             map((event) => {
-                Logger.log("Inside [UsersSagas] Saga", "UsersSagas");
+                Logger.log('Inside [UsersSagas] Saga', 'UsersSagas');
                 const userId = event.userDto.id;
                 return new WelcomeUserCommand(userId);
             }),

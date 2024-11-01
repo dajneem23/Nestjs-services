@@ -20,6 +20,6 @@
         "resolveJsonModule": true,
         "forceConsistentCasingInFileNames": true
     },
-    "include": ["./apps/**/*", "ormconfig.ts", "eslint.config.js"],
+    "include": ["./apps/**/*", "ormconfig.ts", "eslint.config.ts"],
     "exclude": ["node_modules", "dist"]
 }

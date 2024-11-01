@@ -1,9 +1,9 @@
-import { join } from "path";
+import { join } from 'path';
 
-import { INestApplication } from "@nestjs/common";
-import { Transport } from "@nestjs/microservices";
+import { INestApplication } from '@nestjs/common';
+import { Transport } from '@nestjs/microservices';
 
-export async function setupGrpc(app: INestApplication, packageName, fileName: string, port: number, host = "0.0.0.0") {
+export async function setupGrpc(app: INestApplication, packageName, fileName: string, port: number, host = '0.0.0.0') {
     app.connectMicroservice({
         transport: Transport.GRPC,
         options: {

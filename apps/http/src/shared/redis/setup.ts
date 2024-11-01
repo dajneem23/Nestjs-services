@@ -1,5 +1,5 @@
-import { INestApplication } from "@nestjs/common";
-import { Transport } from "@nestjs/microservices";
+import { INestApplication } from '@nestjs/common';
+import { Transport } from '@nestjs/microservices';
 
 export const setUpRedis = async (app: INestApplication, url: string) => {
     app.connectMicroservice({

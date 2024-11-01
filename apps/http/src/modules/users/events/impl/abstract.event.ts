@@ -1,6 +1,6 @@
-import { IAggregateEvent } from "nestjs-eventstore";
+import { IAggregateEvent } from 'nestjs-eventstore';
 
-import { UserDto } from "../../dtos/user.dto";
+import { UserDto } from '../../dtos/user.dto';
 
 export class UserAbstractEvent implements IAggregateEvent {
     constructor(public readonly userDto: UserDto) {}

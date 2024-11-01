@@ -1,9 +1,9 @@
-import { Test, TestingModule } from "@nestjs/testing";
+import { Test, TestingModule } from '@nestjs/testing';
 
-import { HttpController } from "./http.controller";
-import { HttpService } from "./http.service";
+import { HttpController } from './http.controller';
+import { HttpService } from './http.service';
 
-describe("HttpController", () => {
+describe('HttpController', () => {
     let httpController: HttpController;
 
     beforeEach(async () => {
@@ -15,9 +15,9 @@ describe("HttpController", () => {
         httpController = app.get<HttpController>(HttpController);
     });
 
-    describe("root", () => {
-        it("should return \"Hello World!\"", () => {
-            expect(httpController.getHello()).toBe("Hello World!");
+    describe('root', () => {
+        it('should return "Hello World!"', () => {
+            expect(httpController.getHello()).toBe('Hello World!');
         });
     });
 });

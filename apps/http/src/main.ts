@@ -1,20 +1,20 @@
-import { ValidationPipe, ClassSerializerInterceptor } from "@nestjs/common";
-import { NestFactory, Reflector } from "@nestjs/core";
-import { NestExpressApplication, ExpressAdapter } from "@nestjs/platform-express";
-import rateLimit from "express-rate-limit";
-import helmet from "helmet"; // security feature
-import morgan from "morgan"; // HTTP request logger
-import { JoiPipe } from "nestjs-joi";
+import { ValidationPipe, ClassSerializerInterceptor } from '@nestjs/common';
+import { NestFactory, Reflector } from '@nestjs/core';
+import { NestExpressApplication, ExpressAdapter } from '@nestjs/platform-express';
+import rateLimit from 'express-rate-limit';
+import helmet from 'helmet'; // security feature
+import morgan from 'morgan'; // HTTP request logger
+import { JoiPipe } from 'nestjs-joi';
 
-import { AppModule } from "./app.module";
-import { HttpExceptionFilter } from "./filters/http-exception.filter";
-import { JoiExceptionFilter } from "./filters/joi-exception.filter";
-import { SqlErrorInterceptor } from "./interceptors/sql-error.interceptor";
-import { CustomReturnFieldsInterceptor } from "./middlewares/custom-return-fields.interceptor";
-import { ConfigService } from "./shared/services/config.service";
-import { LoggerService } from "./shared/services/logger.service";
-import { setupSwagger } from "./shared/swagger/setup";
-import { SharedModule } from "./shared.module";
+import { AppModule } from './app.module';
+import { HttpExceptionFilter } from './filters/http-exception.filter';
+import { JoiExceptionFilter } from './filters/joi-exception.filter';
+import { SqlErrorInterceptor } from './interceptors/sql-error.interceptor';
+import { CustomReturnFieldsInterceptor } from './middlewares/custom-return-fields.interceptor';
+import { ConfigService } from './shared/services/config.service';
+import { LoggerService } from './shared/services/logger.service';
+import { setupSwagger } from './shared/swagger/setup';
+import { SharedModule } from './shared.module';
 
 async function bootstrap() {
     const app = await NestFactory.create<NestExpressApplication>(AppModule, new ExpressAdapter(), { cors: true });
@@ -23,7 +23,7 @@ async function bootstrap() {
 
     app.useLogger(loggerService);
     app.use(
-        morgan("combined", {
+        morgan('combined', {
             stream: {
                 write: (message) => {
                     loggerService.log(message);
@@ -46,7 +46,7 @@ async function bootstrap() {
 
     app.useGlobalInterceptors(
         // Only use the SQL error interceptor in development
-        ...(process.env.NODE_ENV == "development" ? [new SqlErrorInterceptor()] : []),
+        ...(process.env.NODE_ENV == 'development' ? [new SqlErrorInterceptor()] : []),
         new ClassSerializerInterceptor(reflector),
         new CustomReturnFieldsInterceptor(),
     );
@@ -73,12 +73,12 @@ async function bootstrap() {
 
     const configService = app.select(SharedModule).get(ConfigService);
 
-    if (["development", "staging"].includes(configService.nodeEnv)) {
+    if (['development', 'staging'].includes(configService.nodeEnv)) {
         setupSwagger(app, configService.swaggerConfig);
     }
 
-    const port = configService.getNumber("PORT") || 3000;
-    const host = configService.get("HOST") || "127.0.0.1";
+    const port = configService.getNumber('PORT') || 3000;
+    const host = configService.get('HOST') || '127.0.0.1';
     await app.listen(port, host);
 
     loggerService.warn(`server running on port ${host}:${port}`);
