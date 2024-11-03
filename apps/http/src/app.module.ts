@@ -5,11 +5,9 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { TerminusModule } from '@nestjs/terminus';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { utilities as nestWinstonModuleUtilities, WinstonModule } from 'nest-winston';
+
 import { EventStoreCqrsModule } from 'nestjs-eventstore';
 import { JoiPipeModule } from 'nestjs-joi';
-import winston from 'winston';
-
-import { AppConfig } from './app.config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ModelsModule } from './models.module';
@@ -18,6 +16,7 @@ import { UsersModule } from './modules/users/users.module';
 import { eventStoreBusConfig } from './providers/event-bus.provider';
 import { ConfigService } from './shared/services/config.service';
 import { SharedModule } from './shared.module';
+import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
     imports: [
@@ -25,6 +24,11 @@ import { SharedModule } from './shared.module';
         TypeOrmModule.forRootAsync({
             imports: [SharedModule],
             useFactory: (configService: ConfigService) => configService.typeOrmConfig,
+            inject: [ConfigService],
+        }),
+        MongooseModule.forRootAsync({
+            imports: [SharedModule],
+            useFactory: (configService: ConfigService) => configService.mongoConfig,
             inject: [ConfigService],
         }),
         EventStoreCqrsModule.forRootAsync(

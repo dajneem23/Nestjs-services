@@ -7,6 +7,7 @@ import DailyRotateFile from 'winston-daily-rotate-file';
 import { AppConfig } from '../../app.config';
 import { ISwaggerConfigInterface } from '../../interfaces/swagger-config.interface';
 import { SnakeNamingStrategy } from '../typeorm/strategies/snake-naming.strategy';
+import { MongooseModuleAsyncOptions, MongooseModuleFactoryOptions } from '@nestjs/mongoose';
 
 export class ConfigService {
     constructor() {
@@ -76,6 +77,16 @@ export class ConfigService {
             migrationsRun: true,
             logging: this.nodeEnv === 'development',
             namingStrategy: new SnakeNamingStrategy(),
+        };
+    }
+
+    get mongoConfig(): MongooseModuleFactoryOptions {
+        return {
+            uri: this.get('MONGO_URI'),
+            dbName: this.get('MONGO_DB_NAME'),
+            retryAttempts: 5,
+            autoIndex: true,
+            sanitizeFilter: true,
         };
     }
 
